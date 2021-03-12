@@ -1,0 +1,242 @@
+/*
+Theme Name: Mrstadesign Theme
+Author: mrsta
+Author URI: https://martin-mrstik.tech
+Version: 0.0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+@import "mixins";
+
+html {
+  @include box-sizing(border-box);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.container {
+  @include container(1150px);
+  padding: 2em;
+}
+
+/* VARIABLES */
+$font: "Jura", sans-serif;
+
+$color-font: #fff;
+$color-accent: #e32029;
+$color-dark: #000;
+
+body {
+  font-family: $font;
+  color: $color-font;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: $color-dark;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+/* HEADER */
+header {
+  height: 600px;
+
+  hr {
+    border: none;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      rgba($color-accent, 0),
+      rgba($color-accent, 1) 10%,
+      rgba($color-accent, 1) 90%,
+      rgba($color-accent, 0)
+    );
+  }
+
+  .main-header {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    height: calc(100% - 43px);
+  }
+
+  p {
+    font-size: 1.4em;
+  }
+}
+
+.contact-wrapper {
+  background-color: $color-font;
+  height: 43px;
+}
+
+.contacts {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 em(32, 24);
+  font-size: em(24);
+}
+
+h1 {
+  display: block;
+  text-align: center;
+  img {
+    width: 620px;
+    height: auto;
+    max-width: 90%;
+  }
+}
+
+// NAVIGATION
+.nav-wrapper {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#nav-primary {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  font-size: 2em;
+
+  li a {
+    display: block;
+  }
+
+  li:hover,
+  li:focus,
+  .current-menu-item {
+    &::after {
+      content: "";
+      display: block;
+      width: 140%;
+      height: 20px;
+      margin-left: -20%;
+      background: url(img/arrow-pointer.png) no-repeat center;
+      animation: grow 0.3s;
+    }
+  }
+}
+
+@keyframes grow {
+  0% {
+    width: 0%;
+    margin-left: 50%;
+  }
+  100% {
+    width: 140%;
+    margin-left: -20%;
+  }
+}
+
+.pointer {
+  max-width: 100%;
+}
+
+// GALLERY
+.gallery {
+  padding-top: 0;
+}
+
+#gallery-set {
+  line-height: 0;
+  column-count: 3;
+  column-gap: 1em;
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+    padding-bottom: 1em;
+
+    transition: ease-in 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// MEDIA
+@media (max-width: 760px) {
+  #gallery-set {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  #nav-primary {
+    font-size: 1.4em;
+  }
+
+  li:hover,
+  li:focus,
+  .current-menu-item {
+    &::after {
+      zoom: 70%;
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .contacts {
+    font-size: em(16);
+  }
+}
+
+@media (max-width: 500px) {
+  #gallery-set {
+    column-count: 1;
+  }
+}
+
+@media (max-width: 440px) {
+  header {
+    height: 400px;
+
+    p {
+      font-size: 1em;
+    }
+  }
+}
+
+@media (max-width: 370px) {
+  .contacts {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .contact-wrapper {
+    height: 50px;
+  }
+  header {
+    .main-header {
+      height: calc(100% - 50px);
+    }
+  }
+
+  #nav-primary {
+    font-size: 1em;
+
+    li:hover,
+    li:focus,
+    .current-menu-item {
+      &::after {
+        zoom: 50%;
+      }
+    }
+  }
+}
