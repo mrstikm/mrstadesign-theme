@@ -18,11 +18,11 @@
                 )
             ) );
             
-            while ( $loop->have_posts() ) : $loop->the_post();
-                    
-                    the_post_thumbnail();
-
-            endwhile;
+            while ( $loop->have_posts() ) : $loop->the_post();?>
+                <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
+                    <?php the_post_thumbnail(); ?>
+                </a>
+            <?php endwhile;
             ?>
 
         </div>
