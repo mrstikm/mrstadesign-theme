@@ -69,6 +69,7 @@
     const handleLightbox = (event) => {
         event.preventDefault();
         ajaxCall('post_content',event.target.parentElement.href, getPostContent);
+        openLightbox();
     };
     
     const closeLightbox = () => {
@@ -78,6 +79,11 @@
         document.getElementById('lightbox').style.display = "block";
     }
     document.getElementById('gallery-set').addEventListener('click', handleLightbox);
+    document.getElementById('lightbox').addEventListener('click', event => {
+        if ( !(event.target.nodeName == 'IMG') ) {
+            closeLightbox();
+        }
+    });
 
 
     // AJAX

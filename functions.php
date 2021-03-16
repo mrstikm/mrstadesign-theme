@@ -1,4 +1,4 @@
-<?php
+di<?php
 /**
  * Functions and definitions
  *
@@ -85,8 +85,18 @@ function mrstadesign_post_content() {
     $href = $_POST['href'];
     $postID = url_to_postid($href);
     $post = get_post( $postID );
+    $media = get_attached_media( 'image', $post );
+    
+    echo '<div id="preview">' . get_the_post_thumbnail($post, 'extra-large') . '</div>
+        <div id="slides">';
+    foreach($media as $att_id => $attachment) {
+        $thumbnail_img_url = wp_get_attachment_image_src( $attachment->ID, 'post-thumbnail' );
+          echo '<img src="' . $thumbnail_img_url[0] . '" width="' . $thumbnail_img_url[1] . '" height="' . $thumbnail_img_url[2] . '">';
+        // $full_img_url = wp_get_attachment_url($attachment->ID);
+        //   echo '<img src="' . $full_img_url . '">';
+    }
+    echo '</div>';
 
-    print_r( apply_filters('the_content', $post->post_content) );
 
     die();
 }
