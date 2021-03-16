@@ -50,7 +50,35 @@ function mrstadesign_category_link( $link, $term )
 }
 add_filter( 'term_link', 'mrstadesign_category_link', 10, 2 );
 
+// AJAX
+add_action( 'wp_ajax_change_category', 'mrstadesign_change_category' );
+add_action( 'wp_ajax_nopriv_change_category', 'mrstadesign_change_category' );
+function mrstadesign_change_category() {
+    // check_ajax_referer( 'mrstadesign_custom_ajax_nonce', 'security' );
+    $slug = url_to_postid( $_POST['href'] );
 
+    $loop = new WP_Query( array( 
+        'post_type' => 'galerie', 
+        'showposts' => -1,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'galerie_category',
+                'field' => 'slug',
+                'terms' => 'helmy'
+            )
+        )
+    ) );
+    
+    
+    while ( $loop->have_posts() ) : $loop->the_post();?>
+        <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
+            <?php the_post_thumbnail();
+            echo ( $slug ); ?>
+        </a>
+    <?php endwhile;
+
+    die();
+}
 
 
 

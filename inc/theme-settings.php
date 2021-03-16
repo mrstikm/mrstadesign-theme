@@ -5,7 +5,7 @@
 function mrstadesign_custom_header_setup() {
     add_theme_support( 'custom-header',  
         array(
-            'default-image'      => get_template_directory_uri() . '/img/header-background.jpg',
+            'default-image'      => get_template_directory_uri() . '/assets/img/header-background.jpg',
             'header-text'        => false,
             'default-text-color' => 'fff',
             'width'              => 1600,
