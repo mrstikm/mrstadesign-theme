@@ -28,5 +28,13 @@
 
         </div>
     </main>
+
+    <div id="lightbox">
+        <div class="cross">
+            &times
+        </div>
+        <div id="lightbox-content">
+        </div>
+    </div>
  
 <?php get_footer(); ?>

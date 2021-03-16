@@ -78,6 +78,19 @@ function mrstadesign_change_category() {
     die();
 }
 
+add_action( 'wp_ajax_post_content', 'mrstadesign_post_content' );
+add_action( 'wp_ajax_nopriv_post_content', 'mrstadesign_post_content' );
+function mrstadesign_post_content() {
+    // check_ajax_referer( 'mrstadesign_custom_ajax_nonce', 'security' );
+    $href = $_POST['href'];
+    $postID = url_to_postid($href);
+    $post = get_post( $postID );
+
+    print_r( apply_filters('the_content', $post->post_content) );
+
+    die();
+}
+
 
 
 
