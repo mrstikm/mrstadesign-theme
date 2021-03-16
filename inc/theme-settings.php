@@ -120,5 +120,6 @@ add_filter('nav_menu_css_class', function($classes, $menu_item) {
 	if ($vychozi && is_front_page() ) {
 		$classes[] = 'current-menu-item';
 	}
+
 	return $classes;
 }, 10, 2);

@@ -55,7 +55,7 @@ add_action( 'wp_ajax_change_category', 'mrstadesign_change_category' );
 add_action( 'wp_ajax_nopriv_change_category', 'mrstadesign_change_category' );
 function mrstadesign_change_category() {
     // check_ajax_referer( 'mrstadesign_custom_ajax_nonce', 'security' );
-    $slug = url_to_postid( $_POST['href'] );
+    $slug = $_POST['href'];
 
     $loop = new WP_Query( array( 
         'post_type' => 'galerie', 
@@ -64,7 +64,7 @@ function mrstadesign_change_category() {
             array(
                 'taxonomy' => 'galerie_category',
                 'field' => 'slug',
-                'terms' => 'helmy'
+                'terms' => $slug
             )
         )
     ) );
@@ -72,8 +72,7 @@ function mrstadesign_change_category() {
     
     while ( $loop->have_posts() ) : $loop->the_post();?>
         <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
-            <?php the_post_thumbnail();
-            echo ( $slug ); ?>
+            <?php the_post_thumbnail(); ?>
         </a>
     <?php endwhile;
 

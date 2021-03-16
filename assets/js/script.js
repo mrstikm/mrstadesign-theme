@@ -33,7 +33,7 @@
         // zrusit presmerovani
         event.preventDefault();
         // ziskat href atribut z odkazu
-        let href = event.target.href;
+        let href = event.target.title;
 
         // AJAX
         httpRequest = new XMLHttpRequest();
