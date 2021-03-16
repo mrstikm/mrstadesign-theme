@@ -69,12 +69,11 @@ function mrstadesign_change_category() {
         )
     ) );
     
-    
-    while ( $loop->have_posts() ) : $loop->the_post();?>
-        <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
-            <?php the_post_thumbnail(); ?>
-        </a>
-    <?php endwhile;
+    while ( $loop->have_posts() ) : $loop->the_post();
+       echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
+       echo the_post_thumbnail();
+       echo '</a>';
+    endwhile;
 
     die();
 }

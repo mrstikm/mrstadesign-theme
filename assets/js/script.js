@@ -16,8 +16,7 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200) {
                     let gallerySet = document.getElementById('gallery-set');
-                    gallerySet.innerHTML = parseResponse(httpRequest.responseText);
-                    //console.log(httpRequest.response);
+                    gallerySet.innerHTML = httpRequest.response;
                 } else {
                     alert("failed");
                 }      
