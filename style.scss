@@ -179,6 +179,7 @@ h1 {
 // GALLERY
 .gallery {
   padding-top: 0;
+  position: relative;
 }
 
 #gallery-set {
@@ -191,6 +192,7 @@ h1 {
     height: auto !important;
     padding-bottom: 1em;
     display: block;
+    position: relative;
 
     transition: filter ease-in 0.5s, transform ease-in 0.4s;
     filter: opacity(0);
@@ -202,6 +204,24 @@ h1 {
     &:hover {
       transform: scale(1.05);
     }
+  }
+  p {
+    line-height: 2em;
+    font-size: 2em;
+    column-count: 1;
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  span {
+    color: $color-accent;
+    position: relative;
+    top: -40px;
+    right: -110px;
+    font-size: 2em;
   }
 }
 

@@ -160,6 +160,7 @@ h1 img {
 
 .gallery {
   padding-top: 0;
+  position: relative;
 }
 
 #gallery-set {
@@ -174,6 +175,7 @@ h1 img {
   height: auto !important;
   padding-bottom: 1em;
   display: block;
+  position: relative;
   transition: filter ease-in 0.5s, transform ease-in 0.4s;
   filter: opacity(0);
 }
@@ -184,6 +186,26 @@ h1 img {
 
 #gallery-set img:hover {
   transform: scale(1.05);
+}
+
+#gallery-set p {
+  line-height: 2em;
+  font-size: 2em;
+  column-count: 1;
+  position: absolute;
+  display: block;
+  text-align: center;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+#gallery-set span {
+  color: #e32029;
+  position: relative;
+  top: -40px;
+  right: -110px;
+  font-size: 2em;
 }
 
 #lightbox {

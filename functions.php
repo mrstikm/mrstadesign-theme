@@ -69,11 +69,18 @@ function mrstadesign_change_category() {
         )
     ) );
     
-    while ( $loop->have_posts() ) : $loop->the_post();
-       echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
-       echo the_post_thumbnail();
-       echo '</a>';
-    endwhile;
+    if ( $loop->have_posts() ) {
+
+        while ( $loop->have_posts() ) : $loop->the_post();
+            echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
+            echo the_post_thumbnail();
+            echo '<span class="img-count">' . count(get_attached_media( 'image', $post->ID )) . '</span>';
+            echo '</a>';
+        endwhile;
+
+    } else {
+        echo '<p>Litujeme, daná kategorie neobsahuje žádné příspěvky.';
+    }
 
     die();
 }
@@ -95,15 +102,20 @@ function mrstadesign_post_content() {
     echo    '<div id="arrow-right">></div>';
     echo '</div>';
     echo '<div id="slides">';
-    echo    '<a href="' . get_the_post_thumbnail_url( $post, 'extra-large' ) . '" target="_blank" id="actual">';
-    echo        get_the_post_thumbnail( $post, 'post-thumbnail' );
-    echo    '</a>';
+
     foreach($media as $att_id => $attachment) {
         $thumbnail_img_url = wp_get_attachment_image_src( $attachment->ID, 'post-thumbnail' );
-          
-        echo '<a href="' . wp_get_attachment_url($attachment->ID) . '" target="_blank">';
+        $counter = 0;
+        if ( $counter == 0 ) {
+            echo '<a href="' . wp_get_attachment_url($attachment->ID) . '" target="_blank" id="actual">';
+        } else {
+            echo '<a href="' . wp_get_attachment_url($attachment->ID) . '" target="_blank">';
+        }
+        
             echo '<img width="' . $thumbnail_img_url[1] . '" height="' . $thumbnail_img_url[2] . '" src="' . $thumbnail_img_url[0] . '">';
         echo '</a>';
+
+        $counter++;
     }
     echo '</div>';
 
