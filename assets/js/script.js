@@ -71,20 +71,39 @@
         ajaxCall('post_content',event.target.parentElement.href, getPostContent);
         openLightbox();
     };
-    
     const closeLightbox = () => {
         document.getElementById('lightbox').style.display = "none";
     }
     const openLightbox = () => {
         document.getElementById('lightbox').style.display = "block";
     }
+    const handleArrows = (event) => {
+        event.preventDefault();
+        console.log(event);
+
+
+    }
+    const handleSlides = (event) => {
+        event.preventDefault();
+        let src = event.target.parentElement.attributes[0].value,
+            img = document.createElement('img'),
+            mainPicture = document.getElementById('main-picture');
+        img.setAttribute('src', src);
+        console.log(img);
+        mainPicture.innerHTML = '';
+        mainPicture.appendChild(img);
+    }
+
     document.getElementById('gallery-set').addEventListener('click', handleLightbox);
     document.getElementById('lightbox').addEventListener('click', event => {
-        if ( !(event.target.nodeName == 'IMG') ) {
+        if ( !(event.target.nodeName == 'IMG' || event.target.id == "arrow-left" || event.target.id == "arrow-right") ) {
             closeLightbox();
+        } else if ( event.target.id == "arrow-right" || event.target.id == "arrow-left" ) { 
+            handleArrows(event);
+        } else if ( event.target.parentElement.parentElement.id == "slides" ){
+            handleSlides(event);
         }
     });
-
 
     // AJAX
     const ajaxCall = (action, href, handle) => {

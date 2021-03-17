@@ -165,8 +165,7 @@ h1 img {
   display: none;
   width: 100vw;
   height: 100vh;
-  opacity: 0.9;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   top: 0;
   left: 0;
@@ -179,6 +178,66 @@ h1 img {
   font-size: 2em;
   width: 1em;
   height: 1em;
+}
+
+.cross,
+#arrow-left,
+#arrow-right {
+  cursor: pointer;
+}
+
+.cross:hover,
+#arrow-left:hover,
+#arrow-right:hover {
+  color: #e32029;
+}
+
+#lightbox-content {
+  height: 90vh;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#preview {
+  max-width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#preview #arrow-left,
+#preview #arrow-right {
+  font-size: 4em;
+}
+
+#main-picture {
+  max-width: 60%;
+  height: auto;
+  position: relative;
+}
+
+#main-picture img {
+  max-width: 100%;
+  height: auto;
+}
+
+#slides {
+  max-height: 20vw;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+}
+
+#slides img {
+  max-height: 200px;
+  width: auto;
+  padding: 0 8px;
+  display: inline-block;
 }
 
 @media (max-width: 950px) {

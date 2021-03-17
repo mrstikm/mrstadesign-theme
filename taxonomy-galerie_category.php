@@ -33,7 +33,7 @@
         <div class="cross">
             &times
         </div>
-        <div id="lightbox-content">
+        <div id="lightbox-content" class="container">
         </div>
     </div>
  

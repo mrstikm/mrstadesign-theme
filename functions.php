@@ -87,13 +87,22 @@ function mrstadesign_post_content() {
     $post = get_post( $postID );
     $media = get_attached_media( 'image', $post );
     
-    echo '<div id="preview">' . get_the_post_thumbnail($post, 'extra-large') . '</div>
-        <div id="slides">';
+    echo '<div id="preview">';
+    echo    '<div id="arrow-left"><</div>';
+    echo        '<div id="main-picture">';
+    echo            get_the_post_thumbnail($post, 'extra-large');
+    echo        '</div>';
+    echo    '<div id="arrow-right">></div>';
+    echo '</div>';
+    echo '<div id="slides">';
+    echo    '<a href="' . get_the_post_thumbnail_url( $post, 'extra-large' ) . '" target="_blank">';
+    echo        get_the_post_thumbnail( $post, 'post-thumbnail' );
+    echo    '</a>';
     foreach($media as $att_id => $attachment) {
         $thumbnail_img_url = wp_get_attachment_image_src( $attachment->ID, 'post-thumbnail' );
           
         echo '<a href="' . wp_get_attachment_url($attachment->ID) . '" target="_blank">';
-        echo '<img src="' . $thumbnail_img_url[0] . '" width="' . $thumbnail_img_url[1] . '" height="' . $thumbnail_img_url[2] . '">';
+            echo '<img width="' . $thumbnail_img_url[1] . '" height="' . $thumbnail_img_url[2] . '" src="' . $thumbnail_img_url[0] . '">';
         echo '</a>';
     }
     echo '</div>';
