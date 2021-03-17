@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+    
     <main class="container gallery">
         
         <div id="gallery-set">

@@ -28,6 +28,9 @@
     const handleLightbox = (event) => {
         // zrusit default akci
         event.preventDefault();
+
+        if( !(event.target.nodeName == 'IMG') ) { return; }
+
         // ajaxove volani na odkaz prispevku (akce v php, odkaz, element do ktereho se prida response)
         ajaxCall('post_content', event.target.parentElement.href, 'lightbox-content');
         
@@ -86,11 +89,12 @@
             hideLeft();
         } else if ( newPicture == document.getElementById('slides').lastChild ) {
             hideRight();
-        } else {
-            document.querySelectorAll('#slides > a').forEach(a => {
-                a.setAttribute('id', '');
-            });
         }
+        
+        document.querySelectorAll('#slides > a').forEach(a => {
+            a.setAttribute('id', '');
+        });
+        
         // nastaveni actual ID pro novy odkaz
         newPicture.setAttribute('id', 'actual');
 
@@ -106,7 +110,7 @@
         document.querySelectorAll('#slides > a').forEach(a => {
             a.setAttribute('id', '');
         });
-        
+
         let slides = document.getElementById('slides'),
         targetA = event.target.parentElement;
         
@@ -130,9 +134,10 @@
         let src = event.target.parentElement.attributes[0].value,
             img = createImg(src);
         appendImg(img, 'main-picture');
-    }
+    };
 
     document.getElementById('gallery-set').addEventListener('click', handleLightbox);
+    
     document.getElementById('lightbox').addEventListener('click', event => {
         if ( !(event.target.id == 'arrow-left' || event.target.id == 'arrow-right' || event.target.nodeName == 'IMG') ) {
             closeLightbox();
@@ -158,6 +163,8 @@
                                 item.style.visibility = "hidden";
                             })
                         }
+                    } else {
+                        elementsShow = document.querySelectorAll('#gallery-set > a > img');
                     }
                 } else {
                     alert("failed");
@@ -183,6 +190,43 @@
             handleAjax(element);
         }
         httpRequest.send('action=' + action + '&security=mrstadesign_custom_ajax_nonce&href=' + href);
+        document.getElementById(element).innerHTML = '<div class="loader"></div>';
     }
-    
+
+
+
+    // ANIMACE OBRAZKU
+    let scroll = window.requestAnimationFrame || function(callback) { window.setTimeout(callback, 1000/60) },
+        elementsShow = document.querySelectorAll('#gallery-set > a > img');
+
+    const isElementInViewport = (element) => {
+        let rect = element.getBoundingClientRect();
+
+        return (
+            (rect.top <= 0
+                && rect.bottom >= 0)
+              ||
+              (rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight))
+              ||
+              (rect.top >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
+        );
+    }
+
+    const loop = () => {
+
+        elementsShow.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('is-visible');
+            } else {
+                element.classList.remove('is-visible');
+            }
+        });
+        
+        scroll(loop);
+    }
+
+    loop();
+
 })();

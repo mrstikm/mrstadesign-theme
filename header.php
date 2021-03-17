@@ -19,8 +19,7 @@
     <?php wp_head() ?>
 </head>
 
-<body>
-
+<body>  
     <header>
     
         <div class="contact-wrapper">
