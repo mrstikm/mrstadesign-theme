@@ -79,9 +79,24 @@
     }
     const handleArrows = (event) => {
         event.preventDefault();
-        console.log(event);
 
-
+        let newPicture,
+            actualPicture = document.getElementById("actual");
+        if (event.target.id == 'arrow-left') {
+            newPicture = actualPicture.previousSibling;
+        } else {
+            newPicture = actualPicture.nextSibling;
+        }
+        document.querySelectorAll('#slides > a').forEach(a => {
+            a.setAttribute('id', '');
+        });
+        newPicture.setAttribute('id', 'actual');
+        let src = newPicture.attributes[0].value,
+            img = document.createElement('img'),
+            mainPicture = document.getElementById('main-picture');
+        img.setAttribute('src', src);
+        mainPicture.innerHTML = '';
+        mainPicture.appendChild(img);
     }
     const handleSlides = (event) => {
         event.preventDefault();
@@ -89,9 +104,13 @@
             img = document.createElement('img'),
             mainPicture = document.getElementById('main-picture');
         img.setAttribute('src', src);
-        console.log(img);
         mainPicture.innerHTML = '';
         mainPicture.appendChild(img);
+
+        document.querySelectorAll('#slides > a').forEach(a => {
+            a.setAttribute('id', '');
+        });
+        event.target.parentElement.setAttribute('id', 'actual');
     }
 
     document.getElementById('gallery-set').addEventListener('click', handleLightbox);

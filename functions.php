@@ -95,7 +95,7 @@ function mrstadesign_post_content() {
     echo    '<div id="arrow-right">></div>';
     echo '</div>';
     echo '<div id="slides">';
-    echo    '<a href="' . get_the_post_thumbnail_url( $post, 'extra-large' ) . '" target="_blank">';
+    echo    '<a href="' . get_the_post_thumbnail_url( $post, 'extra-large' ) . '" target="_blank" id="actual">';
     echo        get_the_post_thumbnail( $post, 'post-thumbnail' );
     echo    '</a>';
     foreach($media as $att_id => $attachment) {
