@@ -73,8 +73,10 @@ function mrstadesign_change_category() {
 
         while ( $loop->have_posts() ) : $loop->the_post();
             echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
-            echo the_post_thumbnail();
-            echo '<span class="img-count">' . count(get_attached_media( 'image', $post->ID )) . '</span>';
+            echo '<figure>';
+            echo    the_post_thumbnail();
+            echo    '<figcaption class="img-count">' . count(get_attached_media( 'image', $post->ID )) . '</figcaption>';
+            echo '</figure>';
             echo '</a>';
         endwhile;
 

@@ -164,7 +164,7 @@
                             })
                         }
                     } else {
-                        elementsShow = document.querySelectorAll('#gallery-set > a > img');
+                        elementsShow = document.querySelectorAll('#gallery-set > a > figure');
                     }
                 } else {
                     alert("failed");
@@ -197,7 +197,7 @@
 
     // ANIMACE OBRAZKU
     let scroll = window.requestAnimationFrame || function(callback) { window.setTimeout(callback, 1000/60) },
-        elementsShow = document.querySelectorAll('#gallery-set > a > img');
+        elementsShow = document.querySelectorAll('#gallery-set > a > figure');
 
     const isElementInViewport = (element) => {
         let rect = element.getBoundingClientRect();

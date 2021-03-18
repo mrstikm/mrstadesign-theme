@@ -187,16 +187,14 @@ h1 {
   column-count: 4;
   column-gap: 1em;
   color: rgba(0, 0, 0, 1);
-  img {
-    width: 100% !important;
-    height: auto !important;
+
+  figure {
+    margin: 0;
+    padding: 0;
     padding-bottom: 1em;
-    display: block;
-    position: relative;
-
     transition: filter ease-in 0.5s, transform ease-in 0.4s;
+    position: relative;
     filter: opacity(0);
-
     &.is-visible {
       filter: opacity(1);
     }
@@ -204,7 +202,21 @@ h1 {
     &:hover {
       transform: scale(1.05);
     }
+    white-space: nowrap;
   }
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  figcaption {
+    color: $color-accent;
+    font-size: 2em;
+    position: absolute;
+    bottom: 1.2em;
+    right: 0.3em;
+  }
+
   p {
     line-height: 2em;
     font-size: 2em;
@@ -215,13 +227,6 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-  }
-  span {
-    color: $color-accent;
-    position: relative;
-    top: -40px;
-    right: -110px;
-    font-size: 2em;
   }
 }
 

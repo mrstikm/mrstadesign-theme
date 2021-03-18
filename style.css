@@ -170,22 +170,35 @@ h1 img {
   color: black;
 }
 
-#gallery-set img {
-  width: 100% !important;
-  height: auto !important;
+#gallery-set figure {
+  margin: 0;
+  padding: 0;
   padding-bottom: 1em;
-  display: block;
-  position: relative;
   transition: filter ease-in 0.5s, transform ease-in 0.4s;
+  position: relative;
   filter: opacity(0);
+  white-space: nowrap;
 }
 
-#gallery-set img.is-visible {
+#gallery-set figure.is-visible {
   filter: opacity(1);
 }
 
-#gallery-set img:hover {
+#gallery-set figure:hover {
   transform: scale(1.05);
+}
+
+#gallery-set img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+#gallery-set figcaption {
+  color: #e32029;
+  font-size: 2em;
+  position: absolute;
+  bottom: 1.2em;
+  right: 0.3em;
 }
 
 #gallery-set p {
@@ -198,14 +211,6 @@ h1 img {
   width: 100%;
   top: 0;
   left: 0;
-}
-
-#gallery-set span {
-  color: #e32029;
-  position: relative;
-  top: -40px;
-  right: -110px;
-  font-size: 2em;
 }
 
 #lightbox {

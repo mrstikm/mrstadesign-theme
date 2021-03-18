@@ -21,8 +21,10 @@
                 
                 while ( $loop->have_posts() ) : $loop->the_post();?>
                     <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
-                        <?php the_post_thumbnail(); ?>
-                        <span class="img-count"><?php echo count(get_attached_media( 'image', $post->ID )); ?> </span>
+                        <figure>
+                            <?php the_post_thumbnail(); ?>
+                            <figcaption class="img-count"><?php echo count(get_attached_media( 'image', $post->ID )); ?> </figcaption>
+                        </figure>
                     </a>
                 <?php endwhile;
             ?>
