@@ -50,15 +50,6 @@ body a {
   left: calc(50% - 60px);
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /* HEADER */
 header {
   height: 600px;
@@ -141,17 +132,6 @@ h1 img {
   margin-left: -20%;
   background: url(assets/img/arrow-pointer.png) no-repeat center;
   animation: grow 0.3s;
-}
-
-@keyframes grow {
-  0% {
-    width: 0%;
-    margin-left: 50%;
-  }
-  100% {
-    width: 140%;
-    margin-left: -20%;
-  }
 }
 
 .pointer {
@@ -395,6 +375,82 @@ h1 img {
   }
   #preview {
     height: 100%;
+  }
+}
+
+.fadeOut {
+  animation: fadeout 0.3s ease-in;
+}
+
+.fadeIn {
+  animation: fadein 0.3s ease-in;
+}
+
+.slideLeft {
+  animation: slide-left 0.3s ease-in;
+}
+
+.slideRight {
+  animation: slide-right 0.3s ease-in;
+}
+
+@keyframes grow {
+  0% {
+    width: 0%;
+    margin-left: 50%;
+  }
+  100% {
+    width: 140%;
+    margin-left: -20%;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(1000px);
+    filter: opacity(0);
+  }
+  100% {
+    transform: translateX(0px);
+    filter: opacity(1);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-1000px);
+    filter: opacity(0);
+  }
+  100% {
+    transform: translateX(0px);
+    filter: opacity(1);
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -49,12 +49,6 @@
         img.setAttribute('src', src);
         return img;
     }
-    // prirazeni img do lokace
-    const appendImg = (img, location) => {
-        let appendTo = document.getElementById(location);
-        appendTo.innerHTML = '';
-        appendTo.appendChild(img);
-    }
     // hide / visible sipek
     const hideLeft = () => {
         document.getElementById('arrow-left').style.visibility = "hidden";
@@ -74,14 +68,26 @@
         event.preventDefault();
 
         let newPicture,
-            actualPicture = document.getElementById("actual");
+            src,
+            img,
+            actualPicture = document.getElementById("actual"),
+            mainPicture = document.getElementById('main-picture');
+ 
+        mainPicture.firstChild.classList.add('fadeOut');
+        console.log(mainPicture.firstChild);
         // klik vlevo - prechozi sourozenec, klik vpravo nasledujici
         if (event.target.id == 'arrow-left') {
             newPicture = actualPicture.previousSibling;
+            src = newPicture.attributes[0].value;
+            img = createImg(src);
             showRight();
+            img.classList.add('slideRight');
         } else {
             newPicture = actualPicture.nextSibling;
+            src = newPicture.attributes[0].value;
+            img = createImg(src);
             showLeft();
+            img.classList.add('slideLeft');
         }
         // vymazani actual ID pro odkazy a zmizeni sipek pro prvni / posledni fotku
         if ( newPicture == document.getElementById('slides').firstChild ) {
@@ -97,10 +103,9 @@
         // nastaveni actual ID pro novy odkaz
         newPicture.setAttribute('id', 'actual');
 
-        // zobrazeni obrazku
-        let src = newPicture.attributes[0].value,
-            img = createImg(src);
-        appendImg(img, 'main-picture');
+        // zobrazeni obrazku  
+        mainPicture.removeChild(mainPicture.firstChild);
+        mainPicture.appendChild(img);
     }
     // klikani na slidy
     const handleSlides = (event) => {
@@ -111,8 +116,10 @@
         });
 
         let slides = document.getElementById('slides'),
-        targetA = event.target.parentElement;
+            targetA = event.target.parentElement,
+            mainPicture = document.getElementById('main-picture');
         
+        mainPicture.firstChild.classList.add("fadeOut");
         // prirazeni actual ID pro kliknuty odkaz
         targetA.setAttribute('id', 'actual');
         if ( slides.firstChild == targetA ) {
@@ -132,7 +139,9 @@
         // zobrazeni obrazku
         let src = event.target.parentElement.attributes[0].value,
             img = createImg(src);
-        appendImg(img, 'main-picture');
+        img.classList.add("fadeIn");
+        mainPicture.removeChild(mainPicture.firstChild);
+        mainPicture.appendChild(img);
     };
     // Animace
     
