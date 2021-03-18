@@ -72,11 +72,13 @@ function mrstadesign_change_category() {
     if ( $loop->have_posts() ) {
 
         while ( $loop->have_posts() ) : $loop->the_post();
+            $gallery = get_post_gallery( $post->ID, false );
+            $ids = wp_parse_id_list( $gallery['ids'] );
             echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
             echo '<figure>';
             echo    the_post_thumbnail();
             echo    '<figcaption class="img-count">';
-            echo        count(get_attached_media( 'image', $post->ID ));
+            echo        count( $ids ) + 1;
             echo    '</figcaption>';
             echo '</figure>';
             echo '</a>';
@@ -96,7 +98,7 @@ function mrstadesign_post_content() {
     $href = $_POST['href'];
     $postID = url_to_postid($href);
     $post = get_post( $postID );
-    $media = get_attached_media( 'image', $post );
+    $gallery = get_post_gallery( $post, false );
     
     echo '<div id="preview">';
     echo    '<div id="arrow-left"><</div>';
@@ -106,23 +108,16 @@ function mrstadesign_post_content() {
     echo    '<div id="arrow-right">></div>';
     echo '</div>';
     echo '<div id="slides">';
+    echo '<a href="' . get_the_post_thumbnail_url( $post, 'extra-large' ) . '" id="actual">';
+    echo    get_the_post_thumbnail( $post, 'post-thumbnail' );   
+    echo '</a>';
 
-    foreach($media as $att_id => $attachment) {
-        $thumbnail_img_url = wp_get_attachment_image_src( $attachment->ID, 'post-thumbnail' );
-        $counter = 0;
-        if ( $counter == 0 ) {
-            echo '<a href="' . wp_get_attachment_url($attachment->ID) . '" target="_blank" id="actual">';
-        } else {
-            echo '<a href="' . wp_get_attachment_url($attachment->ID) . '" target="_blank">';
-        }
-        
-            echo '<img width="' . $thumbnail_img_url[1] . '" height="' . $thumbnail_img_url[2] . '" src="' . $thumbnail_img_url[0] . '">';
+    $ids = wp_parse_id_list( $gallery['ids'] );
+    foreach ( $ids as $id ) {
+        echo '<a href="' . wp_get_attachment_image_url( $id, 'large' ) . '">';
+        echo wp_get_attachment_image( $id, 'post-thumbnail' );
         echo '</a>';
-
-        $counter++;
     }
-    echo '</div>';
-
 
     die();
 }

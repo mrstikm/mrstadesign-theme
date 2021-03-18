@@ -19,15 +19,20 @@
                     )
                 ) );
                 
-                while ( $loop->have_posts() ) : $loop->the_post();?>
-                    <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
-                        <figure>
-                            <?php the_post_thumbnail(); ?>
-                            <figcaption class="img-count"><?php echo count(get_attached_media( 'image', $post->ID )); ?> </figcaption>
-                        </figure>
-                    </a>
-                <?php endwhile;
-            ?>
+                if ( $loop->have_posts() ) { 
+
+                    while ( $loop->have_posts() ) : $loop->the_post();                        
+                        if( $gallery = get_post_gallery( $post->ID, false )) { 
+                            $ids = wp_parse_id_list( $gallery['ids'] );
+                        };?>
+                        <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
+                            <figure>
+                                <?php the_post_thumbnail(); ?>
+                                <figcaption class="img-count"><?php echo count($ids) + 1; ?> </figcaption>
+                            </figure>
+                        </a>
+                    <?php $ids = array(); endwhile;
+                };?>
 
         </div>
     </main>
