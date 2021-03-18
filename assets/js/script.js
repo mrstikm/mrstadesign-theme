@@ -28,11 +28,10 @@
     const handleLightbox = (event) => {
         // zrusit default akci
         event.preventDefault();
-
         if( !(event.target.nodeName == 'IMG') ) { return; }
 
         // ajaxove volani na odkaz prispevku (akce v php, odkaz, element do ktereho se prida response)
-        ajaxCall('post_content', event.target.parentElement.href, 'lightbox-content');
+        ajaxCall('post_content', event.target.parentElement.parentElement.href, 'lightbox-content');
         
         openLightbox();
     };
