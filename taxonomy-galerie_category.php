@@ -28,10 +28,19 @@
                         <a href="<?php echo get_permalink() ?>" title="<?php echo get_the_title() ?>">
                             <figure>
                                 <?php the_post_thumbnail(); ?>
-                                <figcaption class="img-count"><?php echo count($ids) + 1; ?> </figcaption>
+                                <figcaption class="img-count">
+                                <?php 
+                                    if ( ($gallery) ) { 
+                                        echo count($ids) + 1;
+                                    } else { 
+                                       echo 1;
+                                    } 
+                                ?> 
+                                </figcaption>
                             </figure>
                         </a>
-                    <?php $ids = array(); endwhile;
+                    <?php $ids = array(); 
+                    endwhile;
                 };?>
 
         </div>
