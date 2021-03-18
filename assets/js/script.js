@@ -134,6 +134,8 @@
             img = createImg(src);
         appendImg(img, 'main-picture');
     };
+    // Animace
+    
 
     document.getElementById('gallery-set').addEventListener('click', handleLightbox);
     

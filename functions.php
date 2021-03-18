@@ -75,7 +75,9 @@ function mrstadesign_change_category() {
             echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
             echo '<figure>';
             echo    the_post_thumbnail();
-            echo    '<figcaption class="img-count">' . count(get_attached_media( 'image', $post->ID )) . '</figcaption>';
+            echo    '<figcaption class="img-count">';
+            echo        count(get_attached_media( 'image', $post->ID ));
+            echo    '</figcaption>';
             echo '</figure>';
             echo '</a>';
         endwhile;

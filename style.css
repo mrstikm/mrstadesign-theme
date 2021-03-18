@@ -194,11 +194,22 @@ h1 img {
 }
 
 #gallery-set figcaption {
-  color: #e32029;
-  font-size: 2em;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 37px;
   position: absolute;
-  bottom: 0.7em;
+  bottom: 0.3em;
   right: 0.3em;
+}
+
+#gallery-set figcaption:before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 26px;
+  background: url(assets/img/photos-count.png) center no-repeat;
+  margin-right: 6px;
 }
 
 #gallery-set p {
